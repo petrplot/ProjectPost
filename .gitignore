@@ -3,6 +3,7 @@
 .pnp.js
 
 /config
+/img
 
 .DS_Store
 .env.local

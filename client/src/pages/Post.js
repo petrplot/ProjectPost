@@ -29,6 +29,16 @@ const Post = () => {
                 <div className='card__text'>
                     {post.text}
                 </div>
+                <div className='card__img'>
+                    {post.img?
+                        <img 
+                        src={`http://localhost:5000/${post.img}`}
+                         alt=''
+                         />
+                         :
+                         '<!фото отсутствует!>'
+                    }
+                </div>
                 <div className='card__date'>{post.date}</div>
                 <div className='card__author'>{post.author}</div>
                 

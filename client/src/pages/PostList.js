@@ -29,33 +29,33 @@ const [posts, setPosts] = useState([])
 
     return (
         <div>
-            
             <h1>Посты</h1>
-            
                 {
                     posts.map((post) => {
                     
                        return (
                            <div key={post._id}>
                                 <NavLink  to={`/${post._id}`}>
+                                    <img 
+                                    width={'100px'} 
+                                    height={'100px'} 
+                                    src={`http://localhost:5000/${post.img}`} 
+                                    alt='нет фото'
+                                    />
                                     <CardPost  post={post}/>
-                                    
                                 </NavLink>
                                 <button 
-                                    
-                                    onClick={()=>{
-                                        deletePost(post._id)
-                                    }}
+                                onClick={()=>{
+                                    deletePost(post._id)
+                                }}
                                 >
                                     удалить пост
                                 </button>
                             </div>
                        )
-                       
                    })
                 }
                 <Link to={'/add'}>Добавить пост</Link>
-            
         </div>
     )
 }

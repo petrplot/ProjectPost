@@ -3,6 +3,8 @@ const router = require('./routes')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const config = require('./config/config.json')
+const fileUpload = require('express-fileupload')
+const path = require('path')
 
 
 const app = express()
@@ -12,6 +14,8 @@ const dbUri  = config.DB_URL
 const PORT = 5000
 
 app.use(express.json())
+app.use(express.static(path.resolve(__dirname, "img")))
+app.use(fileUpload())
 app.use(cors())
 app.use('/api', router)
 

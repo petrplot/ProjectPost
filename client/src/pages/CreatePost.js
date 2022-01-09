@@ -3,27 +3,32 @@ import { Link } from 'react-router-dom'
 
 
 const CreatePost = () => {
+
     const [title, setTitle] = useState('')
     const [text, setText] = useState('')
     const [author, setAuthor] = useState('')
+    const [file, setFile] = useState(null)
+
+    const selectFile = (e) => {
+        setFile(e.target.files[0]);
+    }
 
     const addPost = async() =>{
-        const post = {
-            title:title,
-            text:text,
-            author:author
-        }
+
+        const post =  new FormData()
+        post.append('title',title)
+        post.append('text',text)
+        post.append('author',author)
+        post.append('img',file)
+
+        
         await fetch('http://localhost:5000/api/post',{
-            method:'POST',
-            headers: {
-                'Content-Type': 'application/json'
-              },
-            body:JSON.stringify(post)
-        })
-         
-       
+            method:'POST', 
+            body:post
+        }) 
         
     }
+
     return (
         <div>
             <form>
@@ -43,6 +48,12 @@ const CreatePost = () => {
                 value={author}
                 onChange={e=>setAuthor(e.target.value)}
                 />
+                <div>
+                    <input 
+                    type="file"
+                    onChange={selectFile}
+                    />
+                </div>
                 <button onClick={addPost}>Создать</button>
             </form>
             <Link to={'/'}>На главную</Link>

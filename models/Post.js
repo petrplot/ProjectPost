@@ -5,7 +5,8 @@ const postSchema = new Schema({
     title:String,
     text:String,
     author:String,
-    date:{type:Date, default:Date.now}
+    date:{type:Date, default:Date.now},
+    img:{type:String, default:null}
 })
 
 const Post = new mongoose.model('Post', postSchema)
